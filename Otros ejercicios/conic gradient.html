@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejemplos de Conic Gradient</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.contenedor{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.caja{
+    width:220px;
+    height:220px;
+    border:2px solid black;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-weight:bold;
+}
+
+/* 1. Básico */
+.ej1{
+    background: conic-gradient(red, blue);
+    
+}
+
+/* 2. Tres colores */
+.ej2{
+    background: conic-gradient(red, yellow, green);
+}
+
+/* 3. Cuatro colores */
+.ej3{
+    background: conic-gradient(red, orange, yellow, green);
+}
+
+/* 4. Arcoíris */
+.ej4{
+    background: conic-gradient(
+        red,
+        orange,
+        yellow,
+        green,
+        cyan,
+        blue,
+        violet
+    );
+}
+
+/* 5. Inicio desde 90° */
+.ej5{
+    background: conic-gradient(from 90deg, red, blue);
+}
+
+/* 6. Inicio desde 180° */
+.ej6{
+    background: conic-gradient(from 180deg, red, blue);
+}
+
+/* 7. Centro arriba */
+.ej7{
+    background: conic-gradient(from 0deg at top, red, yellow, blue);
+}
+
+/* 8. Centro izquierda */
+.ej8{
+    background: conic-gradient(from 0deg at left, purple, pink, cyan);
+}
+
+/* 9. Con porcentajes */
+.ej9{
+    background: conic-gradient(
+        red 0%,
+        yellow 30%,
+        green 60%,
+        blue 100%
+    );
+}
+
+/* 10. Tipo gráfico circular */
+.ej10{
+    background: conic-gradient(
+        red 25%,
+        blue 25% 50%,
+        green 50% 75%,
+        yellow 75%
+    );
+}
+
+/* 11. Colores pastel */
+.ej11{
+    background: conic-gradient(
+        #ffb3ba,
+        #ffdfba,
+        #ffffba,
+        #baffc9,
+        #bae1ff
+    );
+}
+
+/* 12. Blanco y negro */
+.ej12{
+    background: conic-gradient(black, white, black);
+    color:white;
+}
+</style>
+
+</head>
+<body>
+
+<h1>Ejemplos de Conic Gradient</h1>
+
+<div class="contenedor">
+
+<div class="caja ej1">Básico</div>
+
+<div class="caja ej2">3 colores</div>
+
+<div class="caja ej3">4 colores</div>
+
+<div class="caja ej4">Arcoíris</div>
+
+<div class="caja ej5">Desde 90°</div>
+
+<div class="caja ej6">Desde 180°</div>
+
+<div class="caja ej7">Centro arriba</div>
+
+<div class="caja ej8">Centro izquierda</div>
+
+<div class="caja ej9">Con porcentajes</div>
+
+<div class="caja ej10">Gráfico circular</div>
+
+<div class="caja ej11">Pastel</div>
+
+<div class="caja ej12">Blanco y negro</div>
+
+</div>
+
+</body>
+</html>

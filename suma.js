@@ -20,7 +20,7 @@ function fnSalidaParrafo(datoVariable) {
 
 function fnAlerta(datoVariable) {
 
-    alert(`El dato ingresado en caja fue: ${datoVariable}`);
+    alert(`El dato ingresado fue: ${datoVariable}`);
 
 }
 

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejercicio</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:white;
+}
+
+h1{
+    margin:15px;
+    font-size:45px;
+    font-weight:normal;
+}
+
+.paisaje{
+    width:900px;
+    height:500px;
+    margin:auto;
+    position:relative;
+    overflow:hidden;
+}
+
+/* =======================
+        CIELO
+=======================*/
+
+.cielo{
+    position:absolute;
+    width:100%;
+    height:56%;
+
+    background:
+    radial-gradient(circle at center bottom,
+        rgba(255,255,180,.95) 0%,
+        rgba(255,235,120,.85) 10%,
+        rgba(255,185,120,.60) 25%,
+        rgba(255,150,130,.40) 45%,
+        rgba(130,110,180,.30) 70%,
+        rgba(60,70,150,.60) 100%
+    ),
+
+    linear-gradient(
+        to bottom,
+        rgb(60,70,150),
+        rgb(110,90,170),
+        rgb(235,150,130)
+    );
+}
+
+/* =======================
+        SOL
+=======================*/
+
+.sol{
+    position:absolute;
+
+    width:280px;
+    height:280px;
+
+    left:50%;
+    top:52%;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:radial-gradient(circle,
+
+        rgba(255,255,255,1) 0%,
+        rgba(255,250,200,.98) 8%,
+        rgba(255,235,120,.90) 18%,
+        rgba(255,210,90,.70) 32%,
+        rgba(255,180,80,.45) 48%,
+        rgba(255,140,70,.20) 68%,
+        rgba(255,120,70,0) 100%
+
+    );
+
+    filter: blur(10px);
+}
+
+/* =======================
+      REFLEJO DEL SOL
+=======================*/
+
+.reflejo{
+
+    position:absolute;
+
+    width:320px;
+    height:130px;
+
+    left:50%;
+    top:53%;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:radial-gradient(circle,
+    rgba(255,220,90,.6),
+    rgba(255,180,50,.2),
+    transparent 75%);
+
+    filter:blur(18px);
+}
+
+/* =======================
+          MAR
+=======================*/
+
+.mar{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+    height:45%;
+
+    background:
+
+    radial-gradient(circle at center top,
+        rgba(255,180,90,.35),
+        rgba(6, 13, 115, 0) 45%
+    ),
+
+    linear-gradient(
+        to bottom,
+        rgb(25,55,120),
+        rgb(27, 57, 106),
+        rgb(19, 69, 139)
+    );
+}
+
+/* Olas */
+
+.ola1{
+
+    position:absolute;
+
+    width:900px;
+    height:180px;
+
+    bottom:30px;
+
+    left:-120px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    filter:blur(35px);
+
+    transform:rotate(8deg);
+}
+
+.ola2{
+
+    position:absolute;
+
+    width:950px;
+    height:170px;
+
+    bottom:-10px;
+
+    left:150px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.06);
+
+    filter:blur(35px);
+
+    transform:rotate(-8deg);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Ejercicio</h1>
+
+<div class="paisaje">
+
+    <div class="cielo"></div>
+
+    <div class="sol"></div>
+
+    <div class="reflejo"></div>
+
+    <div class="mar"></div>
+
+    <div class="ola1"></div>
+
+    <div class="ola2"></div>
+
+</div>
+
+</body>
+</html>

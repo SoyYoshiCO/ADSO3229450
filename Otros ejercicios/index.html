@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>background-attachment</title>
+
+<style>
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.fondo{
+    height: 100vh;
+    background-color: #000000;
+    background-image: url("https://picsum.photos/1200/800");
+    background-size: cover;
+    background-position: top left;
+    background-repeat: no-repeat;
+
+    /* Cambia este valor */
+    background-attachment: fixed;
+}
+
+.contenido{
+    height: 1200px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.623);
+}
+</style>
+
+</head>
+<body>
+
+<div class="fondo"></div>
+
+<div class="contenido">
+    <h1>Prueba background-attachment</h1>
+    <p>Desplázate por la página y cambia el valor de <strong>background-attachment</strong>.</p>
+
+    <h3>Valores para probar:</h3>
+
+    <pre>
+background-attachment: scroll;
+background-attachment: fixed;
+background-attachment: local;
+    </pre>
+
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Repítelo varias veces para tener suficiente contenido y hacer scroll.
+    </p>
+
+</div>
+
+</body>
+</html>

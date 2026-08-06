@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejemplos de Linear Gradient</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    margin: 20px;
+}
+
+h1{
+    text-align: center;
+}
+
+.contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.caja{
+    width: 300px;
+    height: 180px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* 1 */
+.ej1{
+    background: linear-gradient(red, blue);
+}
+
+/* 2 */
+.ej2{
+    background: linear-gradient(to right, red, blue);
+}
+
+/* 3 */
+.ej3{
+    background: linear-gradient(to bottom right, red, yellow);
+}
+
+/* 4 */
+.ej4{
+    background: linear-gradient(red, yellow, green);
+}
+
+/* 5 */
+.ej5{
+    background: linear-gradient(red, orange, yellow, green);
+}
+
+/* 6 */
+.ej6{
+    background: linear-gradient(red, orange, yellow, green, blue);
+}
+
+/* 7 */
+.ej7{
+    background: linear-gradient(45deg, purple, pink);
+}
+
+/* 8 */
+.ej8{
+    background: linear-gradient(90deg, black, gray, white);
+    color: black;
+}
+
+/* 9 */
+.ej9{
+    background: linear-gradient(
+        to right,
+        red 20%,
+        yellow 50%,
+        green 100%
+    );
+}
+
+/* 10 */
+.ej10{
+    background: linear-gradient(
+        to right,
+        red,
+        orange,
+        yellow,
+        green,
+        cyan,
+        blue,
+        violet
+    );
+}
+
+/* 11 */
+.ej11{
+    background: linear-gradient(
+        to right,
+        #ffb3ba,
+        #ffdfba,
+        #ffffba,
+        #baffc9,
+        #bae1ff
+    );
+    color: black;
+}
+
+/* 12 */
+.ej12{
+    background: linear-gradient(
+        to top,
+        #ff512f,
+        #f09819,
+        #ffe259
+    );
+}
+</style>
+
+</head>
+<body>
+
+<h1>Ejemplos de Linear Gradient</h1>
+
+<div class="contenedor">
+
+    <div class="caja ej1">
+        Vertical<br>red → blue
+    </div>
+
+    <div class="caja ej2">
+        Horizontal<br>to right
+    </div>
+
+    <div class="caja ej3">
+        Diagonal<br>to bottom right
+    </div>
+
+    <div class="caja ej4">
+        3 colores
+    </div>
+
+    <div class="caja ej5">
+        4 colores
+    </div>
+
+    <div class="caja ej6">
+        5 colores
+    </div>
+
+    <div class="caja ej7">
+        45°
+    </div>
+
+    <div class="caja ej8">
+        90°
+    </div>
+
+    <div class="caja ej9">
+        Con porcentajes
+    </div>
+
+    <div class="caja ej10">
+        Arcoíris
+    </div>
+
+    <div class="caja ej11">
+        Colores pastel
+    </div>
+
+    <div class="caja ej12">
+        Atardecer
+    </div>
+
+</div>
+
+</body>
+</html>

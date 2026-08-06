@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejemplos de Radial Gradient</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.contenedor{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.caja{
+    width:300px;
+    height:180px;
+    border:2px solid black;
+    border-radius:10px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-weight:bold;
+    color:white;
+}
+
+/* 1. Básico */
+.ej1{
+    background: radial-gradient(red, blue);
+}
+
+/* 2. Tres colores */
+.ej2{
+    background: radial-gradient(red, yellow, green);
+}
+
+/* 3. Cuatro colores */
+.ej3{
+    background: radial-gradient(red, orange, yellow, green);
+}
+
+/* 4. Forma circular */
+.ej4{
+    background: radial-gradient(circle, red, blue);
+}
+
+/* 5. Forma elipse */
+.ej5{
+    background: radial-gradient(ellipse, purple, pink);
+}
+
+/* 6. Centro arriba */
+.ej6{
+    background: radial-gradient(circle at top, yellow, orange, red);
+}
+
+/* 7. Centro abajo */
+.ej7{
+    background: radial-gradient(circle at bottom, cyan, blue, navy);
+}
+
+/* 8. Esquina superior izquierda */
+.ej8{
+    background: radial-gradient(circle at top left, white, gray, black);
+}
+
+/* 9. Esquina inferior derecha */
+.ej9{
+    background: radial-gradient(circle at bottom right, lime, green, darkgreen);
+}
+
+/* 10. Con porcentajes */
+.ej10{
+    background: radial-gradient(
+        circle,
+        red 20%,
+        yellow 50%,
+        green 100%
+    );
+}
+
+/* 11. Colores pastel */
+.ej11{
+    background: radial-gradient(
+        circle,
+        #ffb3ba,
+        #ffdfba,
+        #ffffba,
+        #baffc9,
+        #bae1ff
+    );
+    color:black;
+}
+
+/* 12. Arcoíris */
+.ej12{
+    background: radial-gradient(
+        circle,
+        red,
+        orange,
+        yellow,
+        green,
+        cyan,
+        blue,
+        violet
+    );
+}
+</style>
+
+</head>
+<body>
+
+<h1>Ejemplos de Radial Gradient</h1>
+
+<div class="contenedor">
+
+<div class="caja ej1">Básico</div>
+
+<div class="caja ej2">3 colores</div>
+
+<div class="caja ej3">4 colores</div>
+
+<div class="caja ej4">circle</div>
+
+<div class="caja ej5">ellipse</div>
+
+<div class="caja ej6">Centro arriba</div>
+
+<div class="caja ej7">Centro abajo</div>
+
+<div class="caja ej8">Top Left</div>
+
+<div class="caja ej9">Bottom Right</div>
+
+<div class="caja ej10">Con porcentajes</div>
+
+<div class="caja ej11">Pastel</div>
+
+<div class="caja ej12">Arcoíris</div>
+
+</div>
+
+</body>
+</html>
