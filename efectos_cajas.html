@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Neomórfico Neón</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b0f14;
+            color: white;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-shadow:
+                0 0 3px #00ffff,
+                0 0 8px #00ffff;
+        }
+
+
+        /* =========================
+           FORMULARIO
+        ========================= */
+
+        .formulario {
+            width: 450px;
+            padding: 35px;
+
+            background: #121820;
+            border-radius: 25px;
+
+            border: 1px solid #00ffff;
+
+            box-shadow:
+                12px 12px 25px #05070a,
+                -12px -12px 25px #1d2732,
+                0 0 10px #00ffff,
+                0 0 25px #00ffff;
+
+            transform: translateY(-10px);
+
+            transition: 0.4s ease;
+        }
+
+        .formulario:hover {
+            transform: translateY(-15px) scale(1.02);
+
+            box-shadow:
+                18px 18px 30px #05070a,
+                -18px -18px 30px #1d2732,
+                0 0 15px #00ffff,
+                0 0 35px #00ffff,
+                0 0 50px #00ffff;
+        }
+
+
+        /* =========================
+           LOGO DE GOOGLE
+        ========================= */
+
+        .logo-google {
+            width: 230px;
+            height: 100px;
+
+            margin: 0 auto 25px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #121820;
+
+            border-radius: 20px;
+
+            border: 1px solid #00ffff;
+
+            box-shadow:
+                8px 8px 18px #05070a,
+                -8px -8px 18px #1d2732,
+                0 0 8px #00ffff,
+                0 0 20px #00ffff;
+
+            transition: 0.4s ease;
+        }
+
+        .logo-google img {
+            width: 190px;
+            height: auto;
+
+            display: block;
+
+            object-fit: contain;
+
+            box-shadow:
+                0 4px 8px rgba(0, 0, 0, 0.5);
+
+            filter:
+                drop-shadow(0 0 4px #00ffff)
+                drop-shadow(0 0 8px #00ffff);
+
+            transition: 0.4s ease;
+        }
+
+        .logo-google:hover {
+            transform: translateY(-5px) scale(1.04);
+
+            box-shadow:
+                10px 10px 20px #05070a,
+                -10px -10px 20px #1d2732,
+                0 0 12px #00ffff,
+                0 0 25px #00ffff,
+                0 0 40px #00ffff;
+        }
+
+        .logo-google:hover img {
+            transform: scale(1.05);
+
+            filter:
+                drop-shadow(0 0 5px #00ffff)
+                drop-shadow(0 0 12px #00ffff)
+                drop-shadow(0 0 20px #00ffff);
+        }
+
+
+        /* =========================
+           TITULO
+        ========================= */
+
+        h1 {
+            text-align: center;
+
+            color: #00ffff;
+
+            margin-bottom: 25px;
+
+            text-shadow:
+                0 0 5px #00ffff,
+                0 0 10px #00ffff,
+                0 0 20px #00ffff,
+                0 0 35px #00ffff;
+        }
+
+
+        /* =========================
+           SEGUNDA IMAGEN
+           BOX-SHADOW INSET
+        ========================= */
+
+        .imagen-inset {
+            width: 180px;
+            height: 120px;
+
+            margin: 20px auto 30px;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            background: #121820;
+
+            border: 2px solid #00ffff;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            box-shadow:
+            inset 15px 15px 25px #05070a,
+            inset -15px -15px 25px #1d2732,
+            inset 0 0 25px #00ffff,
+            0 0 10px #00ffff,
+            0 0 25px #00ffff;
+
+            transition: 0.4s ease;
+        }
+
+        .imagen-inset img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: 0.4s ease;
+        }
+
+        .imagen-inset:hover {
+            transform: translateY(-5px) scale(1.05);
+
+            box-shadow:
+                inset 10px 10px 20px #05070a,
+                inset -10px -10px 20px #1d2732,
+                inset 0 0 20px #00ffff,
+                0 0 15px #00ffff,
+                0 0 35px #00ffff;
+        }
+
+        .imagen-inset:hover img {
+            transform: scale(1.08);
+        }
+
+
+        /* =========================
+           TITULOS
+        ========================= */
+
+        .titulo {
+            color: #00ffff;
+
+            margin-top: 25px;
+            margin-bottom: 12px;
+
+            text-shadow:
+                0 0 5px #00ffff,
+                0 0 10px #00ffff,
+                0 0 20px #00ffff;
+        }
+
+
+        /* =========================
+           CHECKBOX Y RADIO
+        ========================= */
+
+        .opcion {
+            display: flex;
+            align-items: center;
+
+            margin: 12px 0;
+
+            color: white;
+
+            cursor: pointer;
+
+            text-shadow:
+                0 0 3px #00ffff,
+                0 0 7px #00ffff;
+
+            transition: 0.3s;
+        }
+
+        .opcion:hover {
+            color: #00ffff;
+
+            transform: translateX(5px);
+
+            text-shadow:
+                0 0 5px #00ffff,
+                0 0 10px #00ffff,
+                0 0 20px #00ffff;
+        }
+
+
+        /* CHECKBOX */
+
+        .opcion input[type="checkbox"] {
+            appearance: none;
+
+            width: 22px;
+            height: 22px;
+
+            margin-right: 12px;
+
+            background: #121820;
+
+            border: 1px solid #00ffff;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            box-shadow:
+                inset 4px 4px 8px #05070a,
+                inset -4px -4px 8px #1d2732,
+                0 0 5px #00ffff;
+
+            transition: 0.3s ease;
+        }
+
+        .opcion input[type="checkbox"]:hover {
+            transform: scale(1.1);
+
+            box-shadow:
+                inset 4px 4px 8px #05070a,
+                inset -4px -4px 8px #1d2732,
+                0 0 10px #00ffff,
+                0 0 20px #00ffff;
+        }
+
+        .opcion input[type="checkbox"]:checked {
+            background: #00ffff;
+
+            box-shadow:
+                inset 3px 3px 6px #009999,
+                inset -3px -3px 6px #66ffff,
+                0 0 10px #00ffff,
+                0 0 20px #00ffff;
+        }
+
+
+        /* RADIO */
+
+        .opcion input[type="radio"] {
+            appearance: none;
+
+            width: 22px;
+            height: 22px;
+
+            margin-right: 12px;
+
+            background: #121820;
+
+            border: 1px solid #00ffff;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            box-shadow:
+                inset 4px 4px 8px #05070a,
+                inset -4px -4px 8px #1d2732,
+                0 0 5px #00ffff;
+
+            transition: 0.3s ease;
+        }
+
+        .opcion input[type="radio"]:hover {
+            transform: scale(1.1);
+
+            box-shadow:
+                inset 4px 4px 8px #05070a,
+                inset -4px -4px 8px #1d2732,
+                0 0 10px #00ffff,
+                0 0 20px #00ffff;
+        }
+
+        .opcion input[type="radio"]:checked {
+            background: #00ffff;
+
+            box-shadow:
+                inset 0 0 0 5px #121820,
+                0 0 10px #00ffff,
+                0 0 20px #00ffff;
+        }
+
+
+        /* =========================
+           SELECT
+        ========================= */
+
+        select {
+            width: 100%;
+
+            padding: 13px;
+
+            background: #121820;
+
+            color: #00ffff;
+
+            border: 1px solid #00ffff;
+
+            border-radius: 12px;
+
+            outline: none;
+
+            cursor: pointer;
+
+            text-shadow:
+                0 0 5px #00ffff;
+
+            box-shadow:
+                inset 5px 5px 10px #05070a,
+                inset -5px -5px 10px #1d2732,
+                0 0 8px #00ffff;
+
+            transition: 0.3s ease;
+        }
+
+        select:hover {
+            transform: scale(1.02);
+
+            box-shadow:
+                inset 4px 4px 8px #05070a,
+                inset -4px -4px 8px #1d2732,
+                0 0 15px #00ffff,
+                0 0 25px #00ffff;
+        }
+
+        select:focus {
+            box-shadow:
+                inset 4px 4px 8px #05070a,
+                inset -4px -4px 8px #1d2732,
+                0 0 15px #00ffff,
+                0 0 25px #00ffff;
+        }
+
+
+        /* =========================
+           SELECT MULTIPLE
+        ========================= */
+
+        select[multiple] {
+            height: 130px;
+            padding: 8px;
+        }
+
+        select[multiple] option {
+            padding: 10px;
+
+            color: white;
+            background: #121820;
+
+            border-radius: 8px;
+
+            margin: 3px;
+        }
+
+        select[multiple] option:hover {
+            background: #16343a;
+        }
+
+        select[multiple] option:checked {
+            background: #00ffff;
+
+            color: #05070a;
+
+            box-shadow:
+                0 0 10px #00ffff,
+                0 0 20px #00ffff;
+        }
+
+
+        /* =========================
+           BOTON
+        ========================= */
+
+        button {
+            width: 100%;
+
+            margin-top: 30px;
+
+            padding: 14px;
+
+            background: #121820;
+
+            color: #00ffff;
+
+            border: 1px solid #00ffff;
+
+            border-radius: 12px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            text-shadow:
+                0 0 5px #00ffff,
+                0 0 10px #00ffff,
+                0 0 20px #00ffff;
+
+            box-shadow:
+                7px 7px 14px #05070a,
+                -7px -7px 14px #1d2732,
+                0 0 10px #00ffff;
+
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+
+            background: #00ffff;
+
+            color: #05070a;
+
+            text-shadow:
+                0 0 5px #05070a,
+                0 0 10px #05070a;
+
+            box-shadow:
+                inset 6px 6px 12px #009999,
+                inset -6px -6px 12px #66ffff,
+                0 0 15px #00ffff,
+                0 0 30px #00ffff,
+                0 0 50px #00ffff;
+        }
+
+        button:active {
+            transform: scale(0.97);
+
+            box-shadow:
+                inset 8px 8px 16px #05070a,
+                inset -8px -8px 16px #1d2732,
+                0 0 10px #00ffff;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="formulario">
+
+        <!-- =========================
+             LOGO GOOGLE
+        ========================= -->
+
+        <div class="logo-google">
+
+            <img
+                src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
+                alt="Logo de Google">
+
+        </div>
+
+
+        <h1>Formulario</h1>
+
+
+        <!-- =========================
+             SEGUNDA IMAGEN
+        ========================= -->
+
+        <div class="imagen-inset">
+
+            <img
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600"
+                alt="Imagen decorativa">
+
+        </div>
+
+
+        <!-- =========================
+             CHECKBOX
+        ========================= -->
+
+        <div class="titulo">
+            ¿Qué lenguajes conoces?
+        </div>
+
+        <label class="opcion">
+            <input type="checkbox">
+            HTML
+        </label>
+
+        <label class="opcion">
+            <input type="checkbox">
+            CSS
+        </label>
+
+        <label class="opcion">
+            <input type="checkbox">
+            JavaScript
+        </label>
+
+
+        <!-- =========================
+             RADIO BUTTON
+        ========================= -->
+
+        <div class="titulo">
+            Selecciona tu género:
+        </div>
+
+        <label class="opcion">
+            <input type="radio" name="genero">
+            Masculino
+        </label>
+
+        <label class="opcion">
+            <input type="radio" name="genero">
+            Femenino
+        </label>
+
+        <label class="opcion">
+            <input type="radio" name="genero">
+            Otro
+        </label>
+
+
+        <!-- =========================
+             SELECT
+        ========================= -->
+
+        <div class="titulo">
+            Selecciona tu país:
+        </div>
+
+        <select>
+            <option>Colombia</option>
+            <option>Argentina</option>
+            <option>México</option>
+            <option>España</option>
+            <option>Chile</option>
+        </select>
+
+
+        <!-- =========================
+             SELECT MULTIPLE
+        ========================= -->
+
+        <div class="titulo">
+            Selecciona tus materias:
+        </div>
+
+        <select multiple>
+            <option>Programación</option>
+            <option>Base de Datos</option>
+            <option>Diseño Web</option>
+            <option>Inglés</option>
+            <option>Matemáticas</option>
+        </select>
+
+
+        <!-- =========================
+             BOTON
+        ========================= -->
+
+        <button type="submit">
+            ENVIAR
+        </button>
+
+    </div>
+
+</body>
+</html>

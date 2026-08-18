@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fondo Interactivo</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================================
+   FONDO
+========================================================= */
+
+.fondo {
+    position: fixed;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #03030a;
+}
+
+
+/* =========================================================
+   IMAGEN
+========================================================= */
+
+.imagen {
+    position: absolute;
+
+    width: 115%;
+    height: 115%;
+
+    left: -7.5%;
+    top: -7.5%;
+
+    background-image: url("fondo.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    filter:
+        saturate(1.2)
+        contrast(1.08);
+
+    animation:
+        movimientoImagen 18s ease-in-out infinite alternate;
+}
+
+
+@keyframes movimientoImagen {
+
+    0% {
+        transform:
+            scale(1)
+            translate(0, 0);
+    }
+
+    100% {
+        transform:
+            scale(1.10)
+            translate(-1%, -1%);
+    }
+}
+
+
+/* =========================================================
+   CAPAS DE BLEND
+========================================================= */
+
+.capa {
+    position: absolute;
+
+    width: 140%;
+    height: 140%;
+
+    left: -20%;
+    top: -20%;
+
+    pointer-events: none;
+}
+
+
+/* DARKEN */
+
+.darken {
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(0,0,0,.75),
+            rgba(20,0,50,.25),
+            rgba(0,0,0,.75)
+        );
+
+    mix-blend-mode: darken;
+
+    animation:
+        darkenMove 12s ease-in-out infinite alternate;
+}
+
+
+@keyframes darkenMove {
+
+    from {
+        transform: translateX(-6%);
+    }
+
+    to {
+        transform: translateX(6%);
+    }
+}
+
+
+/* MULTIPLY */
+
+.multiply {
+
+    background:
+        linear-gradient(
+            45deg,
+            rgba(20,0,70,.70),
+            rgba(130,0,40,.30),
+            rgba(0,30,100,.60)
+        );
+
+    mix-blend-mode: multiply;
+
+    animation:
+        multiplyMove 14s ease-in-out infinite alternate;
+}
+
+
+@keyframes multiplyMove {
+
+    from {
+        transform:
+            translate(-5%,3%)
+            rotate(-2deg);
+    }
+
+    to {
+        transform:
+            translate(5%,-3%)
+            rotate(2deg);
+    }
+}
+
+
+/* COLOR BURN */
+
+.burn {
+
+    background:
+        radial-gradient(
+            circle at 25% 50%,
+            rgba(255,30,0,.50),
+            rgba(100,0,120,.25),
+            transparent 60%
+        );
+
+    mix-blend-mode: color-burn;
+
+    animation:
+        burnMove 9s ease-in-out infinite alternate;
+}
+
+
+@keyframes burnMove {
+
+    from {
+        transform:
+            translate(-10%,3%)
+            scale(.9);
+    }
+
+    to {
+        transform:
+            translate(10%,-3%)
+            scale(1.2);
+    }
+}
+
+
+/* LIGHTEN */
+
+.lighten {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,80,0,.30),
+            rgba(255,255,255,.12),
+            rgba(0,120,255,.30)
+        );
+
+    mix-blend-mode: lighten;
+
+    animation:
+        lightenMove 11s ease-in-out infinite alternate;
+}
+
+
+@keyframes lightenMove {
+
+    from {
+        transform: translateY(7%);
+    }
+
+    to {
+        transform: translateY(-7%);
+    }
+}
+
+
+/* SCREEN */
+
+.screen {
+
+    background:
+        radial-gradient(
+            circle at 75% 20%,
+            rgba(255,255,255,.65),
+            transparent 32%
+        );
+
+    mix-blend-mode: screen;
+
+    animation:
+        screenMove 7s ease-in-out infinite alternate;
+}
+
+
+@keyframes screenMove {
+
+    from {
+        transform:
+            translate(-12%,5%)
+            scale(.8);
+    }
+
+    to {
+        transform:
+            translate(12%,-5%)
+            scale(1.3);
+    }
+}
+
+
+/* COLOR DODGE */
+
+.dodge {
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,220,80,.65),
+            rgba(255,50,0,.20),
+            transparent 42%
+        );
+
+    mix-blend-mode: color-dodge;
+
+    animation:
+        dodgeMove 5s ease-in-out infinite alternate;
+}
+
+
+@keyframes dodgeMove {
+
+    from {
+        transform:
+            scale(.65)
+            translate(-12%,5%);
+    }
+
+    to {
+        transform:
+            scale(1.35)
+            translate(12%,-5%);
+    }
+}
+
+
+/* OVERLAY */
+
+.overlay {
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(255,30,0,.30),
+            rgba(100,0,255,.35),
+            rgba(0,180,255,.30)
+        );
+
+    mix-blend-mode: overlay;
+
+    animation:
+        overlayMove 18s linear infinite;
+}
+
+
+@keyframes overlayMove {
+
+    from {
+        transform:
+            translateX(-10%)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translateX(10%)
+            rotate(360deg);
+    }
+}
+
+
+/* SOFT LIGHT */
+
+.soft {
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,190,100,.35),
+            rgba(100,0,255,.25),
+            transparent 60%
+        );
+
+    mix-blend-mode: soft-light;
+
+    animation:
+        softMove 10s ease-in-out infinite alternate;
+}
+
+
+@keyframes softMove {
+
+    from {
+        transform:
+            scale(.85)
+            translate(6%,5%);
+    }
+
+    to {
+        transform:
+            scale(1.25)
+            translate(-6%,-5%);
+    }
+}
+
+
+/* HARD LIGHT */
+
+.hard {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,0,60,.25),
+            rgba(0,80,255,.35),
+            rgba(255,190,0,.20)
+        );
+
+    mix-blend-mode: hard-light;
+
+    animation:
+        hardMove 13s ease-in-out infinite alternate;
+}
+
+
+@keyframes hardMove {
+
+    from {
+        transform:
+            translateX(-8%)
+            skewX(-3deg);
+    }
+
+    to {
+        transform:
+            translateX(8%)
+            skewX(3deg);
+    }
+}
+
+
+/* HUE */
+
+.hue {
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff003c,
+            #ff00d4,
+            #5000ff,
+            #00aaff,
+            #00ff88,
+            #ffee00,
+            #ff003c
+        );
+
+    opacity: .20;
+
+    mix-blend-mode: hue;
+
+    animation:
+        hueMove 8s linear infinite;
+}
+
+
+@keyframes hueMove {
+
+    from {
+        transform:
+            translateX(-15%)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            translateX(15%)
+            rotate(360deg);
+    }
+}
+
+
+/* SATURATION */
+
+.saturation {
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,0,70,.60),
+            rgba(0,100,255,.45),
+            transparent 60%
+        );
+
+    mix-blend-mode: saturation;
+
+    animation:
+        saturationMove 10s ease-in-out infinite alternate;
+}
+
+
+@keyframes saturationMove {
+
+    from {
+        transform:
+            translate(-10%,5%)
+            scale(.8);
+    }
+
+    to {
+        transform:
+            translate(10%,-5%)
+            scale(1.3);
+    }
+}
+
+
+/* COLOR */
+
+.color {
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255,0,80,.45),
+            rgba(80,0,255,.40),
+            rgba(0,190,255,.45)
+        );
+
+    mix-blend-mode: color;
+
+    animation:
+        colorMove 16s ease-in-out infinite alternate;
+}
+
+
+@keyframes colorMove {
+
+    from {
+        transform:
+            translateX(-10%);
+    }
+
+    to {
+        transform:
+            translateX(10%)
+            scale(1.15);
+    }
+}
+
+
+/* LUMINOSITY */
+
+.luminosity {
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(255,255,255,.40),
+            rgba(255,170,50,.15),
+            transparent 60%
+        );
+
+    mix-blend-mode: luminosity;
+
+    animation:
+        luminosityMove 9s ease-in-out infinite alternate;
+}
+
+
+@keyframes luminosityMove {
+
+    from {
+        transform:
+            translateY(7%)
+            scale(.9);
+    }
+
+    to {
+        transform:
+            translateY(-7%)
+            scale(1.2);
+    }
+}
+
+
+/* =========================================================
+   DESTELLO
+========================================================= */
+
+.destello {
+
+    position: absolute;
+
+    top: -30%;
+    left: -50%;
+
+    width: 35%;
+    height: 160%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.35),
+            transparent
+        );
+
+    filter: blur(15px);
+
+    transform: rotate(18deg);
+
+    mix-blend-mode: screen;
+
+    animation:
+        destelloMove 6s ease-in-out infinite;
+}
+
+
+@keyframes destelloMove {
+
+    0% {
+        left: -50%;
+        opacity: 0;
+    }
+
+    30% {
+        opacity: .8;
+    }
+
+    60% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 130%;
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   ORBES
+========================================================= */
+
+.orbe {
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    filter: blur(25px);
+
+    pointer-events: none;
+
+    mix-blend-mode: screen;
+}
+
+
+.orbe1 {
+
+    width: 260px;
+    height: 260px;
+
+    left: 5%;
+    top: 15%;
+
+    background:
+        rgba(255,30,80,.35);
+
+    animation:
+        orbeUno 8s ease-in-out infinite alternate;
+}
+
+
+@keyframes orbeUno {
+
+    from {
+        transform:
+            translate(0,0)
+            scale(.8);
+    }
+
+    to {
+        transform:
+            translate(180px,100px)
+            scale(1.3);
+    }
+}
+
+
+.orbe2 {
+
+    width: 320px;
+    height: 320px;
+
+    right: 5%;
+    bottom: 5%;
+
+    background:
+        rgba(40,80,255,.35);
+
+    animation:
+        orbeDos 11s ease-in-out infinite alternate;
+}
+
+
+@keyframes orbeDos {
+
+    from {
+        transform:
+            translate(0,0);
+    }
+
+    to {
+        transform:
+            translate(-180px,-130px)
+            scale(.7);
+    }
+}
+
+
+/* =========================================================
+   CANVAS DE OBJETOS INTERACTIVOS
+========================================================= */
+
+#objetos {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 30;
+
+    pointer-events: auto;
+
+    cursor: crosshair;
+}
+
+
+/* =========================================================
+   VIÑETA
+========================================================= */
+
+.vignette {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 40;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            transparent 15%,
+            rgba(0,0,0,.10) 45%,
+            rgba(0,0,0,.55) 80%,
+            rgba(0,0,0,.90) 100%
+        );
+}
+
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+.contenido {
+
+    position: relative;
+
+    z-index: 50;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    color: white;
+
+    pointer-events: none;
+}
+
+
+.etiqueta {
+
+    font-size: 13px;
+
+    letter-spacing: 5px;
+
+    font-weight: bold;
+
+    margin-bottom: 18px;
+
+    color:
+        rgba(255,255,255,.75);
+}
+
+
+h1 {
+
+    font-size:
+        clamp(50px,9vw,120px);
+
+    line-height: .95;
+
+    font-weight: 900;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    text-shadow:
+        0 5px 10px rgba(0,0,0,.9),
+        0 15px 40px rgba(0,0,0,.8),
+        0 0 50px rgba(255,255,255,.15);
+}
+
+
+.descripcion {
+
+    max-width: 650px;
+
+    margin-top: 25px;
+
+    padding: 0 20px;
+
+    font-size:
+        clamp(16px,2vw,21px);
+
+    line-height: 1.6;
+
+    color:
+        rgba(255,255,255,.88);
+
+    text-shadow:
+        0 3px 10px rgba(0,0,0,.9);
+}
+
+
+/* =========================================================
+   INSTRUCCIÓN
+========================================================= */
+
+.instruccion {
+
+    position: absolute;
+
+    bottom: 30px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 60;
+
+    color:
+        rgba(255,255,255,.65);
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    pointer-events: none;
+
+    animation:
+        pulsar 2s ease-in-out infinite alternate;
+}
+
+
+@keyframes pulsar {
+
+    from {
+        opacity: .35;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 48px;
+        letter-spacing: 2px;
+    }
+
+    .descripcion {
+        font-size: 16px;
+    }
+
+    .instruccion {
+        font-size: 10px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     FONDO
+===================================================== -->
+
+<div class="fondo">
+
+    <div class="imagen"></div>
+
+    <div class="capa darken"></div>
+
+    <div class="capa multiply"></div>
+
+    <div class="capa burn"></div>
+
+    <div class="capa lighten"></div>
+
+    <div class="capa screen"></div>
+
+    <div class="capa dodge"></div>
+
+    <div class="capa overlay"></div>
+
+    <div class="capa soft"></div>
+
+    <div class="capa hard"></div>
+
+    <div class="capa hue"></div>
+
+    <div class="capa saturation"></div>
+
+    <div class="capa color"></div>
+
+    <div class="capa luminosity"></div>
+
+    <div class="destello"></div>
+
+    <div class="orbe orbe1"></div>
+
+    <div class="orbe orbe2"></div>
+
+</div>
+
+
+<!-- =====================================================
+     CANVAS
+===================================================== -->
+
+<canvas id="objetos"></canvas>
+
+
+<!-- =====================================================
+     CONTENIDO
+===================================================== -->
+
+<main class="contenido">
+
+    <div class="etiqueta">
+        EXPERIENCIA INTERACTIVA
+    </div>
+
+    <h1>
+        Descubre
+    </h1>
+
+    <p class="descripcion">
+        Atrapa los objetos luminosos que atraviesan
+        la pantalla y descubre lo que ocurre.
+    </p>
+
+</main>
+
+
+<div class="instruccion">
+    ✦ Haz clic en las luces ✦
+</div>
+
+
+<script>
+
+/* =========================================================
+   CANVAS
+========================================================= */
+
+const canvas = document.getElementById("objetos");
+
+const ctx = canvas.getContext("2d");
+
+let ancho;
+let alto;
+
+
+/* =========================================================
+   AJUSTAR CANVAS
+========================================================= */
+
+function ajustarCanvas() {
+
+    const dpr = window.devicePixelRatio || 1;
+
+    ancho = window.innerWidth;
+
+    alto = window.innerHeight;
+
+    canvas.width = ancho * dpr;
+
+    canvas.height = alto * dpr;
+
+    canvas.style.width = ancho + "px";
+
+    canvas.style.height = alto + "px";
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+
+ajustarCanvas();
+
+window.addEventListener(
+    "resize",
+    ajustarCanvas
+);
+
+
+/* =========================================================
+   OBJETOS
+========================================================= */
+
+const objetos = [];
+
+const explosiones = [];
+
+
+/* =========================================================
+   COLORES
+========================================================= */
+
+const colores = [
+
+    "#00eaff",
+    "#ff2bd6",
+    "#ff3b30",
+    "#ffe600",
+    "#7c4dff",
+    "#00ff88"
+];
+
+
+/* =========================================================
+   CREAR OBJETO
+========================================================= */
+
+function crearObjeto() {
+
+    const lado =
+        Math.floor(Math.random() * 4);
+
+
+    let x;
+    let y;
+
+    let velocidadX;
+    let velocidadY;
+
+
+    /* ENTRADA POR IZQUIERDA */
+
+    if (lado === 0) {
+
+        x = -50;
+
+        y =
+            Math.random() *
+            alto;
+
+        velocidadX =
+            1.5 +
+            Math.random() * 2;
+
+        velocidadY =
+            (Math.random() - .5) * 1.5;
+    }
+
+
+    /* ENTRADA POR DERECHA */
+
+    else if (lado === 1) {
+
+        x = ancho + 50;
+
+        y =
+            Math.random() *
+            alto;
+
+        velocidadX =
+            -(1.5 +
+            Math.random() * 2);
+
+        velocidadY =
+            (Math.random() - .5) * 1.5;
+    }
+
+
+    /* ENTRADA POR ARRIBA */
+
+    else if (lado === 2) {
+
+        x =
+            Math.random() *
+            ancho;
+
+        y = -50;
+
+        velocidadX =
+            (Math.random() - .5) * 1.5;
+
+        velocidadY =
+            1.5 +
+            Math.random() * 2;
+    }
+
+
+    /* ENTRADA POR ABAJO */
+
+    else {
+
+        x =
+            Math.random() *
+            ancho;
+
+        y = alto + 50;
+
+        velocidadX =
+            (Math.random() - .5) * 1.5;
+
+        velocidadY =
+            -(1.5 +
+            Math.random() * 2);
+    }
+
+
+    objetos.push({
+
+        x: x,
+
+        y: y,
+
+        vx: velocidadX,
+
+        vy: velocidadY,
+
+        radio:
+            8 +
+            Math.random() * 12,
+
+        color:
+            colores[
+                Math.floor(
+                    Math.random() *
+                    colores.length
+                )
+            ],
+
+        vida: 1,
+
+        pulsacion:
+            Math.random() *
+            Math.PI * 2,
+
+        rotacion:
+            Math.random() *
+            Math.PI * 2
+
+    });
+}
+
+
+/* =========================================================
+   CREAR VARIOS AL INICIO
+========================================================= */
+
+for (let i = 0; i < 8; i++) {
+
+    crearObjeto();
+}
+
+
+/* =========================================================
+   CREAR OBJETOS AUTOMÁTICAMENTE
+========================================================= */
+
+setInterval(
+    crearObjeto,
+    900
+);
+
+
+/* =========================================================
+   DIBUJAR OBJETO
+========================================================= */
+
+function dibujarObjeto(objeto) {
+
+    objeto.pulsacion += .06;
+
+    objeto.rotacion += .03;
+
+
+    const pulso =
+        Math.sin(
+            objeto.pulsacion
+        ) * 2;
+
+
+    const radio =
+        objeto.radio +
+        pulso;
+
+
+    /* ---------------------------------------------
+       ESTELA
+    --------------------------------------------- */
+
+    ctx.save();
+
+    ctx.globalAlpha = .15;
+
+    ctx.strokeStyle =
+        objeto.color;
+
+    ctx.lineWidth =
+        radio * 2;
+
+    ctx.lineCap = "round";
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        objeto.x,
+        objeto.y
+    );
+
+    ctx.lineTo(
+        objeto.x -
+        objeto.vx * 12,
+
+        objeto.y -
+        objeto.vy * 12
+    );
+
+    ctx.stroke();
+
+    ctx.restore();
+
+
+    /* ---------------------------------------------
+       RESPLANDOR
+    --------------------------------------------- */
+
+    ctx.save();
+
+    ctx.globalAlpha = .18;
+
+    ctx.shadowBlur = 35;
+
+    ctx.shadowColor =
+        objeto.color;
+
+    ctx.fillStyle =
+        objeto.color;
+
+    ctx.beginPath();
+
+    ctx.arc(
+        objeto.x,
+        objeto.y,
+        radio * 2.5,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+    ctx.restore();
+
+
+    /* ---------------------------------------------
+       OBJETO CENTRAL
+    --------------------------------------------- */
+
+    ctx.save();
+
+    ctx.shadowBlur = 20;
+
+    ctx.shadowColor =
+        objeto.color;
+
+    ctx.fillStyle =
+        objeto.color;
+
+    ctx.beginPath();
+
+    ctx.arc(
+        objeto.x,
+        objeto.y,
+        radio,
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+
+    /* ---------------------------------------------
+       CENTRO BLANCO
+    --------------------------------------------- */
+
+    ctx.fillStyle =
+        "rgba(255,255,255,.9)";
+
+    ctx.beginPath();
+
+    ctx.arc(
+        objeto.x -
+        radio * .25,
+
+        objeto.y -
+        radio * .25,
+
+        radio * .3,
+
+        0,
+        Math.PI * 2
+    );
+
+    ctx.fill();
+
+    ctx.restore();
+}
+
+
+/* =========================================================
+   ACTUALIZAR OBJETOS
+========================================================= */
+
+function actualizarObjetos() {
+
+    for (
+        let i = objetos.length - 1;
+        i >= 0;
+        i--
+    ) {
+
+        const objeto =
+            objetos[i];
+
+
+        objeto.x +=
+            objeto.vx;
+
+        objeto.y +=
+            objeto.vy;
+
+
+        /* ---------------------------------------------
+           BORDE
+        --------------------------------------------- */
+
+        if (
+            objeto.x < -100 ||
+            objeto.x > ancho + 100 ||
+            objeto.y < -100 ||
+            objeto.y > alto + 100
+        ) {
+
+            objetos.splice(i, 1);
+        }
+    }
+}
+
+
+/* =========================================================
+   EXPLOSIÓN
+========================================================= */
+
+function explotar(x, y, color) {
+
+    /* ---------------------------------------------
+       PARTÍCULAS
+    --------------------------------------------- */
+
+    for (
+        let i = 0;
+        i < 35;
+        i++
+    ) {
+
+        const angulo =
+            Math.random() *
+            Math.PI * 2;
+
+
+        const velocidad =
+            1 +
+            Math.random() * 7;
+
+
+        explosiones.push({
+
+            x: x,
+
+            y: y,
+
+            vx:
+                Math.cos(angulo) *
+                velocidad,
+
+            vy:
+                Math.sin(angulo) *
+                velocidad,
+
+            radio:
+                2 +
+                Math.random() * 4,
+
+            color:
+                color,
+
+            vida: 1,
+
+            decay:
+                .015 +
+                Math.random() * .025
+        });
+    }
+
+
+    /* ---------------------------------------------
+       ONDA EXPANSIVA
+    --------------------------------------------- */
+
+    explosiones.push({
+
+        x: x,
+
+        y: y,
+
+        vx: 0,
+
+        vy: 0,
+
+        radio: 5,
+
+        color: color,
+
+        vida: 1,
+
+        decay: .025,
+
+        onda: true
+    });
+}
+
+
+/* =========================================================
+   DIBUJAR EXPLOSIONES
+========================================================= */
+
+function dibujarExplosiones() {
+
+    for (
+        let i = explosiones.length - 1;
+        i >= 0;
+        i--
+    ) {
+
+        const particula =
+            explosiones[i];
+
+
+        if (particula.onda) {
+
+            particula.radio += 8;
+
+            particula.vida -=
+                particula.decay;
+
+
+            ctx.save();
+
+            ctx.globalAlpha =
+                particula.vida;
+
+            ctx.strokeStyle =
+                particula.color;
+
+            ctx.lineWidth = 4;
+
+            ctx.shadowBlur = 25;
+
+            ctx.shadowColor =
+                particula.color;
+
+            ctx.beginPath();
+
+            ctx.arc(
+                particula.x,
+                particula.y,
+                particula.radio,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.stroke();
+
+            ctx.restore();
+        }
+
+
+        else {
+
+            particula.x +=
+                particula.vx;
+
+            particula.y +=
+                particula.vy;
+
+
+            particula.vx *= .97;
+
+            particula.vy *= .97;
+
+
+            particula.vy += .025;
+
+
+            particula.vida -=
+                particula.decay;
+
+
+            ctx.save();
+
+            ctx.globalAlpha =
+                Math.max(
+                    particula.vida,
+                    0
+                );
+
+            ctx.fillStyle =
+                particula.color;
+
+            ctx.shadowBlur = 15;
+
+            ctx.shadowColor =
+                particula.color;
+
+            ctx.beginPath();
+
+            ctx.arc(
+                particula.x,
+                particula.y,
+                particula.radio,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fill();
+
+            ctx.restore();
+        }
+
+
+        if (
+            particula.vida <= 0
+        ) {
+
+            explosiones.splice(i, 1);
+        }
+    }
+}
+
+
+/* =========================================================
+   CLICK
+========================================================= */
+
+canvas.addEventListener(
+    "click",
+    function(event) {
+
+        const rect =
+            canvas.getBoundingClientRect();
+
+
+        const mouseX =
+            event.clientX -
+            rect.left;
+
+
+        const mouseY =
+            event.clientY -
+            rect.top;
+
+
+        /* ---------------------------------------------
+           BUSCAR OBJETO
+        --------------------------------------------- */
+
+        for (
+            let i = objetos.length - 1;
+            i >= 0;
+            i--
+        ) {
+
+            const objeto =
+                objetos[i];
+
+
+            const distancia =
+                Math.hypot(
+                    mouseX - objeto.x,
+                    mouseY - objeto.y
+                );
+
+
+            /* -----------------------------------------
+               OBJETO ENCONTRADO
+            ----------------------------------------- */
+
+            if (
+                distancia <
+                objeto.radio * 2.5
+            ) {
+
+                explotar(
+                    objeto.x,
+                    objeto.y,
+                    objeto.color
+                );
+
+
+                objetos.splice(
+                    i,
+                    1
+                );
+
+
+                break;
+            }
+        }
+    }
+);
+
+
+/* =========================================================
+   CLICK EN CUALQUIER PARTE
+   SI NO LE DAS A UN OBJETO,
+   CREA UNA PEQUEÑA EXPLOSIÓN.
+========================================================= */
+
+canvas.addEventListener(
+    "click",
+    function(event) {
+
+        const rect =
+            canvas.getBoundingClientRect();
+
+
+        const x =
+            event.clientX -
+            rect.left;
+
+
+        const y =
+            event.clientY -
+            rect.top;
+
+
+        let golpeoObjeto = false;
+
+
+        for (const objeto of objetos) {
+
+            const distancia =
+                Math.hypot(
+                    x - objeto.x,
+                    y - objeto.y
+                );
+
+
+            if (
+                distancia <
+                objeto.radio * 2.5
+            ) {
+
+                golpeoObjeto = true;
+
+                break;
+            }
+        }
+
+
+        if (!golpeoObjeto) {
+
+            explotar(
+                x,
+                y,
+                colores[
+                    Math.floor(
+                        Math.random() *
+                        colores.length
+                    )
+                ]
+            );
+        }
+    }
+);
+
+
+/* =========================================================
+   ANIMACIÓN PRINCIPAL
+========================================================= */
+
+function animar() {
+
+    ctx.clearRect(
+        0,
+        0,
+        ancho,
+        alto
+    );
+
+
+    actualizarObjetos();
+
+
+    for (const objeto of objetos) {
+
+        dibujarObjeto(objeto);
+    }
+
+
+    dibujarExplosiones();
+
+
+    requestAnimationFrame(
+        animar
+    );
+}
+
+
+animar();
+
+</script>
+
+</body>
+</html>
