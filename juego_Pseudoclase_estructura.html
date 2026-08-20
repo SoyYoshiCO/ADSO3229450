@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>🎮 Juego de Pseudoclases Estructurales</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #0f172a,
+                #1e1b4b,
+                #312e81
+            );
+
+            color: white;
+
+            min-height: 100vh;
+        }
+
+
+        /* =====================================
+           CONTENEDOR PRINCIPAL
+        ====================================== */
+
+        .juego {
+
+            max-width: 950px;
+
+            margin: auto;
+
+            background: rgba(15, 23, 42, 0.95);
+
+            border: 2px solid #6366f1;
+
+            border-radius: 25px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 20px 60px
+                rgba(0, 0, 0, 0.5);
+        }
+
+
+        h1 {
+
+            text-align: center;
+
+            color: #a5b4fc;
+
+            font-size: 35px;
+
+            margin-top: 0;
+        }
+
+
+        .subtitulo {
+
+            text-align: center;
+
+            color: #cbd5e1;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =====================================
+           MARCADOR
+        ====================================== */
+
+        .marcador {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            background: #020617;
+
+            padding: 15px 20px;
+
+            border-radius: 15px;
+
+            margin-bottom: 25px;
+
+            border: 1px solid #475569;
+        }
+
+
+        .puntos {
+
+            color: #facc15;
+
+            font-size: 20px;
+
+            font-weight: bold;
+        }
+
+
+        .pregunta-numero {
+
+            color: #93c5fd;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================
+           PREGUNTA
+        ====================================== */
+
+        .pregunta {
+
+            background: #1e293b;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            border: 1px solid #475569;
+
+            margin-bottom: 20px;
+        }
+
+
+        .pregunta h2 {
+
+            margin-top: 0;
+
+            color: #f8fafc;
+
+            font-size: 22px;
+        }
+
+
+        .codigo {
+
+            background: #020617;
+
+            color: #86efac;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            font-family: Consolas, monospace;
+
+            white-space: pre-wrap;
+
+            margin: 15px 0;
+        }
+
+
+        /* =====================================
+           RESPUESTAS
+        ====================================== */
+
+        .respuestas {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 12px;
+        }
+
+
+        .respuesta {
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            border: 2px solid #475569;
+
+            background: #334155;
+
+            color: white;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            text-align: left;
+
+            transition: 0.2s;
+        }
+
+
+        .respuesta:hover {
+
+            transform: translateY(-2px);
+
+            border-color: #818cf8;
+
+            background: #4338ca;
+        }
+
+
+        .respuesta.correcta {
+
+            background: #166534;
+
+            border-color: #22c55e;
+        }
+
+
+        .respuesta.incorrecta {
+
+            background: #991b1b;
+
+            border-color: #ef4444;
+        }
+
+
+        .respuesta:disabled {
+
+            cursor: not-allowed;
+
+            transform: none;
+        }
+
+
+        /* =====================================
+           EXPLICACIÓN
+        ====================================== */
+
+        .explicacion {
+
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            background: #172554;
+
+            border-left: 5px solid #60a5fa;
+
+            line-height: 1.6;
+        }
+
+
+        .explicacion.mostrar {
+
+            display: block;
+        }
+
+
+        .explicacion strong {
+
+            color: #facc15;
+        }
+
+
+        /* =====================================
+           BOTÓN SIGUIENTE
+        ====================================== */
+
+        #siguiente {
+
+            display: none;
+
+            width: 100%;
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #4f46e5;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        #siguiente:hover {
+
+            background: #4338ca;
+        }
+
+
+        /* =====================================
+           EJEMPLO VISUAL
+        ====================================== */
+
+        .ejemplo {
+
+            margin-top: 30px;
+
+            padding: 20px;
+
+            background: #020617;
+
+            border-radius: 15px;
+
+            border: 1px solid #475569;
+        }
+
+
+        .ejemplo h2 {
+
+            color: #c4b5fd;
+        }
+
+
+        .cajas {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+            margin-top: 15px;
+        }
+
+
+        .caja {
+
+            flex: 1;
+
+            min-width: 100px;
+
+            padding: 20px;
+
+            text-align: center;
+
+            border-radius: 10px;
+
+            background: #334155;
+
+            border: 2px solid #64748b;
+        }
+
+
+        /* =====================================
+           DEMOSTRACIÓN DE PSEUDOCLASES
+        ====================================== */
+
+
+        /* FIRST CHILD */
+
+        .demo-first .caja:first-child {
+
+            background: #22c55e;
+
+            color: #052e16;
+        }
+
+
+        /* LAST CHILD */
+
+        .demo-last .caja:last-child {
+
+            background: #ef4444;
+
+            color: white;
+        }
+
+
+        /* NTH ODD */
+
+        .demo-odd .caja:nth-child(odd) {
+
+            background: #3b82f6;
+        }
+
+
+        /* NTH EVEN */
+
+        .demo-even .caja:nth-child(even) {
+
+            background: #ec4899;
+        }
+
+
+        /* FIRST OF TYPE */
+
+        .demo-first-type p:first-of-type {
+
+            background: #8b5cf6;
+
+            padding: 10px;
+
+            border-radius: 8px;
+        }
+
+
+        /* LAST OF TYPE */
+
+        .demo-last-type p:last-of-type {
+
+            background: #f97316;
+
+            padding: 10px;
+
+            border-radius: 8px;
+        }
+
+
+        /* ONLY CHILD */
+
+        .demo-only-child div:only-child {
+
+            background: #14b8a6;
+
+            padding: 15px;
+
+            border-radius: 8px;
+        }
+
+
+        /* ONLY OF TYPE */
+
+        .demo-only-type span:only-of-type {
+
+            background: #eab308;
+
+            color: #422006;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            display: inline-block;
+        }
+
+
+        /* EMPTY */
+
+        .demo-empty div:empty {
+
+            height: 50px;
+
+            background: #f59e0b;
+
+            border-radius: 8px;
+
+            position: relative;
+        }
+
+
+        .demo-empty div:empty::after {
+
+            content: "Soy :empty";
+
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            color: #451a03;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================
+           RESULTADO FINAL
+        ====================================== */
+
+        .final {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+
+        .final h2 {
+
+            font-size: 30px;
+
+            color: #facc15;
+        }
+
+
+        .reiniciar {
+
+            padding: 15px 30px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background: #4f46e5;
+
+            color: white;
+
+            font-size: 17px;
+
+            cursor: pointer;
+        }
+
+
+        .reiniciar:hover {
+
+            background: #4338ca;
+        }
+
+
+        /* =====================================
+           RESPONSIVE
+        ====================================== */
+
+        @media (max-width: 650px) {
+
+            .respuestas {
+
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+
+                font-size: 27px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="juego">
+
+    <h1>
+        🎮 PSEUDOCLASS MASTER
+    </h1>
+
+    <p class="subtitulo">
+        Aprende jugando las pseudoclases estructurales de CSS
+    </p>
+
+
+    <!-- MARCADOR -->
+
+    <div class="marcador">
+
+        <span class="pregunta-numero">
+            Pregunta <span id="numero">1</span> / 10
+        </span>
+
+        <span class="puntos">
+            ⭐ <span id="puntos">0</span>
+        </span>
+
+    </div>
+
+
+    <!-- PREGUNTA -->
+
+    <div id="zonaJuego">
+
+        <div class="pregunta">
+
+            <h2 id="textoPregunta"></h2>
+
+            <div
+                class="codigo"
+                id="codigo"
+            ></div>
+
+            <div
+                class="respuestas"
+                id="respuestas"
+            ></div>
+
+            <div
+                class="explicacion"
+                id="explicacion"
+            ></div>
+
+            <button id="siguiente">
+                ➡️ Siguiente pregunta
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESULTADO -->
+
+    <div
+        class="final"
+        id="final"
+    >
+
+        <h2>
+            🏆 ¡Juego terminado!
+        </h2>
+
+        <p id="resultado"></p>
+
+        <button
+            class="reiniciar"
+            onclick="reiniciar()"
+        >
+            🔄 Jugar otra vez
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+         DEMOSTRACIONES
+    ====================================== -->
+
+    <div class="ejemplo">
+
+        <h2>
+            👀 Laboratorio de pseudoclases
+        </h2>
+
+
+        <h3>:first-child</h3>
+
+        <div class="cajas demo-first">
+
+            <div class="caja">1</div>
+            <div class="caja">2</div>
+            <div class="caja">3</div>
+
+        </div>
+
+
+        <h3>:last-child</h3>
+
+        <div class="cajas demo-last">
+
+            <div class="caja">1</div>
+            <div class="caja">2</div>
+            <div class="caja">3</div>
+
+        </div>
+
+
+        <h3>:nth-child(odd)</h3>
+
+        <div class="cajas demo-odd">
+
+            <div class="caja">1</div>
+            <div class="caja">2</div>
+            <div class="caja">3</div>
+            <div class="caja">4</div>
+            <div class="caja">5</div>
+
+        </div>
+
+
+        <h3>:nth-child(even)</h3>
+
+        <div class="cajas demo-even">
+
+            <div class="caja">1</div>
+            <div class="caja">2</div>
+            <div class="caja">3</div>
+            <div class="caja">4</div>
+            <div class="caja">5</div>
+
+        </div>
+
+
+        <h3>:first-of-type</h3>
+
+        <div class="demo-first-type">
+
+            <h4>Título</h4>
+
+            <p>
+                Primer párrafo
+            </p>
+
+            <p>
+                Segundo párrafo
+            </p>
+
+        </div>
+
+
+        <h3>:last-of-type</h3>
+
+        <div class="demo-last-type">
+
+            <p>
+                Primer párrafo
+            </p>
+
+            <p>
+                Segundo párrafo
+            </p>
+
+            <p>
+                Último párrafo
+            </p>
+
+        </div>
+
+
+        <h3>:only-child</h3>
+
+        <div class="demo-only-child">
+
+            <div>
+                ⭐ Único hijo
+            </div>
+
+        </div>
+
+
+        <h3>:only-of-type</h3>
+
+        <div class="demo-only-type">
+
+            <span>
+                🟡 Único span
+            </span>
+
+        </div>
+
+
+        <h3>:empty</h3>
+
+        <div class="demo-empty">
+
+            <div></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =========================================
+   PREGUNTAS
+========================================= */
+
+
+const preguntas = [
+
+    {
+        pregunta:
+        "¿Qué pseudoclase selecciona al primer hijo?",
+
+        codigo:
+        ".caja:first-child { }",
+
+        respuestas: [
+            ":last-child",
+            ":first-child",
+            ":empty",
+            ":only-child"
+        ],
+
+        correcta: 1,
+
+        explicacion:
+        "<strong>:first-child</strong> selecciona un elemento cuando es el primer hijo de su elemento padre."
+    },
+
+
+    {
+        pregunta:
+        "¿Qué pseudoclase selecciona al último hijo?",
+
+        codigo:
+        ".caja:last-child { }",
+
+        respuestas: [
+            ":last-child",
+            ":first-of-type",
+            ":nth-child",
+            ":empty"
+        ],
+
+        correcta: 0,
+
+        explicacion:
+        "<strong>:last-child</strong> selecciona un elemento cuando es el último hijo de su padre."
+    },
+
+
+    {
+        pregunta:
+        "¿Qué selecciona :nth-child(odd)?",
+
+        codigo:
+        ".caja:nth-child(odd) { }",
+
+        respuestas: [
+            "Elementos pares",
+            "El último elemento",
+            "Elementos impares",
+            "Elementos vacíos"
+        ],
+
+        correcta: 2,
+
+        explicacion:
+        "<strong>:nth-child(odd)</strong> selecciona los elementos impares: 1, 3, 5, 7..."
+    },
+
+
+    {
+        pregunta:
+        "¿Qué selecciona :nth-child(even)?",
+
+        codigo:
+        ".caja:nth-child(even) { }",
+
+        respuestas: [
+            "Elementos pares",
+            "Elementos impares",
+            "El primero",
+            "El único"
+        ],
+
+        correcta: 0,
+
+        explicacion:
+        "<strong>:nth-child(even)</strong> selecciona los elementos pares: 2, 4, 6, 8..."
+    },
+
+
+    {
+        pregunta:
+        "¿Qué hace :first-of-type?",
+
+        codigo:
+        "p:first-of-type { }",
+
+        respuestas: [
+            "Selecciona el primer elemento de ese tipo",
+            "Selecciona todos los elementos",
+            "Selecciona el último elemento",
+            "Selecciona un elemento vacío"
+        ],
+
+        correcta: 0,
+
+        explicacion:
+        "<strong>:first-of-type</strong> selecciona el primer elemento de un determinado tipo dentro de su padre."
+    },
+
+
+    {
+        pregunta:
+        "¿Qué hace :last-of-type?",
+
+        codigo:
+        "p:last-of-type { }",
+
+        respuestas: [
+            "Selecciona el primer hijo",
+            "Selecciona el último elemento de ese tipo",
+            "Selecciona elementos pares",
+            "Selecciona elementos vacíos"
+        ],
+
+        correcta: 1,
+
+        explicacion:
+        "<strong>:last-of-type</strong> selecciona el último elemento de un determinado tipo dentro de su padre."
+    },
+
+
+    {
+        pregunta:
+        "¿Cuándo funciona :only-child?",
+
+        codigo:
+        ".caja:only-child { }",
+
+        respuestas: [
+            "Cuando hay muchos hijos",
+            "Cuando es el primer hijo",
+            "Cuando es el único hijo",
+            "Cuando está vacío"
+        ],
+
+        correcta: 2,
+
+        explicacion:
+        "<strong>:only-child</strong> funciona cuando el elemento es el único hijo de su padre."
+    },
+
+
+    {
+        pregunta:
+        "¿Qué significa :only-of-type?",
+
+        codigo:
+        "p:only-of-type { }",
+
+        respuestas: [
+            "Es el único elemento de ese tipo",
+            "Es el último hijo",
+            "Es el primer hijo",
+            "Está vacío"
+        ],
+
+        correcta: 0,
+
+        explicacion:
+        "<strong>:only-of-type</strong> selecciona un elemento cuando es el único elemento de su mismo tipo dentro del padre."
+    },
+
+
+    {
+        pregunta:
+        "¿Qué selecciona :empty?",
+
+        codigo:
+        "div:empty { }",
+
+        respuestas: [
+            "Elementos con texto",
+            "Elementos que tienen hijos",
+            "Elementos vacíos",
+            "Elementos pares"
+        ],
+
+        correcta: 2,
+
+        explicacion:
+        "<strong>:empty</strong> selecciona elementos que no tienen hijos ni contenido de texto."
+    },
+
+
+    {
+        pregunta:
+        "¿Cuál selecciona los elementos 2, 4, 6 y 8?",
+
+        codigo:
+        ".elemento:nth-child(____) { }",
+
+        respuestas: [
+            "odd",
+            "even",
+            "first",
+            "empty"
+        ],
+
+        correcta: 1,
+
+        explicacion:
+        "<strong>even</strong> significa pares. Por eso :nth-child(even) selecciona 2, 4, 6, 8..."
+    }
+
+];
+
+
+let preguntaActual = 0;
+
+let puntos = 0;
+
+
+/* =========================================
+   MOSTRAR PREGUNTA
+========================================= */
+
+function mostrarPregunta() {
+
+    const pregunta = preguntas[preguntaActual];
+
+
+    document.getElementById("numero").textContent =
+        preguntaActual + 1;
+
+
+    document.getElementById("textoPregunta").textContent =
+        pregunta.pregunta;
+
+
+    document.getElementById("codigo").textContent =
+        pregunta.codigo;
+
+
+    const contenedor =
+        document.getElementById("respuestas");
+
+
+    contenedor.innerHTML = "";
+
+
+    document.getElementById("explicacion")
+        .classList.remove("mostrar");
+
+
+    document.getElementById("siguiente")
+        .style.display = "none";
+
+
+    pregunta.respuestas.forEach(
+        (respuesta, indice) => {
+
+            const boton =
+                document.createElement("button");
+
+
+            boton.className = "respuesta";
+
+
+            boton.textContent = respuesta;
+
+
+            boton.onclick = () =>
+                comprobar(indice, boton);
+
+
+            contenedor.appendChild(boton);
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   COMPROBAR RESPUESTA
+========================================= */
+
+function comprobar(indice, boton) {
+
+    const pregunta =
+        preguntas[preguntaActual];
+
+
+    const botones =
+        document.querySelectorAll(".respuesta");
+
+
+    botones.forEach(b => {
+
+        b.disabled = true;
+
+    });
+
+
+    if (indice === pregunta.correcta) {
+
+        boton.classList.add("correcta");
+
+        puntos++;
+
+        document.getElementById("puntos")
+            .textContent = puntos;
+
+    } else {
+
+        boton.classList.add("incorrecta");
+
+        botones[pregunta.correcta]
+            .classList.add("correcta");
+
+    }
+
+
+    document.getElementById("explicacion")
+        .innerHTML =
+        pregunta.explicacion;
+
+
+    document.getElementById("explicacion")
+        .classList.add("mostrar");
+
+
+    document.getElementById("siguiente")
+        .style.display = "block";
+
+}
+
+
+/* =========================================
+   SIGUIENTE
+========================================= */
+
+document.getElementById("siguiente")
+    .addEventListener("click", () => {
+
+        preguntaActual++;
+
+
+        if (preguntaActual >= preguntas.length) {
+
+            terminar();
+
+        } else {
+
+            mostrarPregunta();
+
+        }
+
+    });
+
+
+/* =========================================
+   FINAL
+========================================= */
+
+function terminar() {
+
+    document.getElementById("zonaJuego")
+        .style.display = "none";
+
+
+    document.querySelector(".marcador")
+        .style.display = "none";
+
+
+    document.getElementById("final")
+        .style.display = "block";
+
+
+    let mensaje;
+
+
+    if (puntos === 10) {
+
+        mensaje =
+            "🏆 ¡PERFECTO! Dominas las pseudoclases estructurales.";
+
+    } else if (puntos >= 7) {
+
+        mensaje =
+            "🔥 ¡Excelente! Ya tienes un buen dominio.";
+
+    } else if (puntos >= 5) {
+
+        mensaje =
+            "👍 Bien. Pero todavía puedes practicar un poco más.";
+
+    } else {
+
+        mensaje =
+            "📚 Sigue practicando. ¡La próxima partida será mejor!";
+
+    }
+
+
+    document.getElementById("resultado").innerHTML =
+
+        `Obtuviste <strong>${puntos}/10</strong> puntos.<br><br>${mensaje}`;
+
+}
+
+
+/* =========================================
+   REINICIAR
+========================================= */
+
+function reiniciar() {
+
+    preguntaActual = 0;
+
+    puntos = 0;
+
+
+    document.getElementById("puntos")
+        .textContent = "0";
+
+
+    document.getElementById("zonaJuego")
+        .style.display = "block";
+
+
+    document.querySelector(".marcador")
+        .style.display = "flex";
+
+
+    document.getElementById("final")
+        .style.display = "none";
+
+
+    mostrarPregunta();
+
+}
+
+
+/* =========================================
+   INICIAR
+========================================= */
+
+mostrarPregunta();
+
+
+</script>
+
+</body>
+
+</html>

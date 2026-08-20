@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Formulario - Pseudoclases Estructurales</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px;
+
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #dbeafe,
+                #ede9fe
+            );
+        }
+
+        .contenedor {
+            max-width: 900px;
+            margin: auto;
+
+            padding: 30px;
+
+            background: white;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0, 0, 0, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #1e3a8a;
+        }
+
+        .descripcion {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================================
+           FORMULARIO
+        ========================================== */
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* =========================================
+           CAMPOS
+        ========================================== */
+
+        .campo {
+            padding: 18px;
+
+            margin-bottom: 10px;
+
+            border-radius: 10px;
+
+            background: #f8fafc;
+
+            border: 2px solid #e2e8f0;
+
+            transition: 0.3s;
+        }
+
+        .campo label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: bold;
+
+            color: #334155;
+        }
+
+        .campo input,
+        .campo textarea,
+        .campo select {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 2px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            font-family: Arial, sans-serif;
+        }
+
+        .campo textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+
+        /* =========================================
+           :FIRST-CHILD
+        ========================================== */
+
+        .campos .campo:first-child {
+
+            background: #dcfce7;
+
+            border-color: #22c55e;
+        }
+
+
+        /* =========================================
+           :LAST-CHILD
+        ========================================== */
+
+        .campos .campo:last-child {
+
+            background: #fee2e2;
+
+            border-color: #ef4444;
+        }
+
+
+        /* =========================================
+           :NTH-CHILD
+
+           IMPARES
+        ========================================== */
+
+        .campos .campo:nth-child(odd) {
+
+            background: #dbeafe;
+
+            border-color: #3b82f6;
+        }
+
+
+        /* =========================================
+           :NTH-CHILD
+
+           PARES
+        ========================================== */
+
+        .campos .campo:nth-child(even) {
+
+            background: #fce7f3;
+
+            border-color: #ec4899;
+        }
+
+
+        /* =========================================
+           FIRST-CHILD Y LAST-CHILD
+        ========================================== */
+
+        .campos .campo:first-child {
+
+            background: #dcfce7;
+
+            border-color: #22c55e;
+        }
+
+        .campos .campo:last-child {
+
+            background: #fee2e2;
+
+            border-color: #ef4444;
+        }
+
+
+        /* =========================================
+           :FIRST-OF-TYPE
+        ========================================== */
+
+        .campos .campo:first-of-type {
+
+            border-top: 6px solid #7c3aed;
+        }
+
+
+        /* =========================================
+           :LAST-OF-TYPE
+        ========================================== */
+
+        .campos .campo:last-of-type {
+
+            border-bottom: 6px solid #f97316;
+        }
+
+
+        /* =========================================
+           :ONLY-CHILD
+
+           Se aplica cuando un elemento
+           es el ÚNICO hijo de su padre.
+        ========================================== */
+
+        .solo-hijo {
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border: 3px solid #14b8a6;
+
+            border-radius: 12px;
+
+            background: #ccfbf1;
+
+            text-align: center;
+        }
+
+        .solo-hijo:only-child {
+
+            background: #99f6e4;
+
+            border-color: #0f766e;
+
+            box-shadow:
+                0 0 0 5px
+                rgba(20, 184, 166, 0.15);
+        }
+
+
+        /* =========================================
+           :ONLY-OF-TYPE
+
+           Se aplica cuando es el único
+           elemento de ese tipo.
+        ========================================== */
+
+        .grupo-only-type {
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border: 2px solid #cbd5e1;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+        }
+
+
+        .grupo-only-type input:only-of-type {
+
+            border: 3px solid #8b5cf6;
+
+            background: #f5f3ff;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(139, 92, 246, 0.15);
+        }
+
+
+        /* =========================================
+           :EMPTY
+
+           Selecciona elementos que NO
+           contienen ningún hijo ni texto.
+        ========================================== */
+
+        .caja-vacia {
+
+            height: 60px;
+
+            margin-top: 25px;
+
+            border: 3px dashed #94a3b8;
+
+            border-radius: 12px;
+
+            position: relative;
+
+            transition: 0.3s;
+        }
+
+
+        .caja-vacia:empty {
+
+            background: #fef3c7;
+
+            border-color: #f59e0b;
+        }
+
+
+        .caja-vacia:empty::after {
+
+            content: "⚠️ Esta caja está vacía";
+
+            position: absolute;
+
+            inset: 0;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: #92400e;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================================
+           HOVER
+        ========================================== */
+
+        .campo:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 5px 15px
+                rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* =========================================
+           FOCUS
+        ========================================== */
+
+        .campo input:focus,
+        .campo textarea:focus,
+        .campo select:focus {
+
+            outline: none;
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(37, 99, 235, 0.15);
+        }
+
+
+        /* =========================================
+           CHECKBOX
+        ========================================== */
+
+        .opciones {
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            border: 2px solid #e2e8f0;
+        }
+
+        .opcion {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+        .opcion input {
+
+            width: 20px;
+            height: 20px;
+        }
+
+
+        /* =========================================
+           FIRST-OF-TYPE / LAST-OF-TYPE
+           EN CHECKBOX
+        ========================================== */
+
+        .opciones label:first-of-type {
+
+            border-left: 6px solid #22c55e;
+        }
+
+        .opciones label:last-of-type {
+
+            border-right: 6px solid #ef4444;
+        }
+
+
+        /* =========================================
+           RADIO BUTTON
+        ========================================== */
+
+        .radios {
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            background: #f8fafc;
+
+            border: 2px solid #e2e8f0;
+        }
+
+        .radio {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px;
+
+            border-radius: 8px;
+        }
+
+        .radio input {
+
+            width: 20px;
+            height: 20px;
+        }
+
+
+        /* =========================================
+           ONLY-CHILD EN EJEMPLO
+        ========================================== */
+
+        .mensaje-unico {
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            background: #e0f2fe;
+
+            border: 2px solid #0284c7;
+        }
+
+
+        .mensaje-unico p:only-child {
+
+            margin: 0;
+
+            padding: 15px;
+
+            background: #bae6fd;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            color: #075985;
+        }
+
+
+        /* =========================================
+           BOTONES
+        ========================================== */
+
+        .botones {
+
+            display: flex;
+
+            gap: 15px;
+
+            margin-top: 25px;
+        }
+
+        button {
+
+            flex: 1;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+
+            background: #1d4ed8;
+
+            transform: translateY(-2px);
+        }
+
+        button:active {
+
+            transform: scale(0.96);
+        }
+
+        .limpiar {
+
+            background: #64748b;
+        }
+
+        .limpiar:hover {
+
+            background: #475569;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 20px;
+            }
+
+            .botones {
+                flex-direction: column;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="contenedor">
+
+    <h1>
+        📝 Formulario interactivo
+    </h1>
+
+    <p class="descripcion">
+
+        Pseudoclases estructurales:
+        <strong>:first-child</strong>,
+        <strong>:last-child</strong>,
+        <strong>:nth-child()</strong>,
+        <strong>:first-of-type</strong>,
+        <strong>:last-of-type</strong>,
+        <strong>:only-child</strong>,
+        <strong>:only-of-type</strong> y
+        <strong>:empty</strong>
+
+    </p>
+
+
+    <form onsubmit="enviar(event)">
+
+
+        <!-- =====================================
+             CAMPOS
+        ====================================== -->
+
+        <div class="campos">
+
+
+            <div class="campo">
+
+                <label for="nombre">
+                    👤 Nombre
+                </label>
+
+                <input
+                    type="text"
+                    id="nombre"
+                    placeholder="Escribe tu nombre"
+                >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="correo">
+                    📧 Correo electrónico
+                </label>
+
+                <input
+                    type="email"
+                    id="correo"
+                    placeholder="correo@ejemplo.com"
+                >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="edad">
+                    🎂 Edad
+                </label>
+
+                <input
+                    type="number"
+                    id="edad"
+                    placeholder="Tu edad"
+                >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="telefono">
+                    📱 Teléfono
+                </label>
+
+                <input
+                    type="tel"
+                    id="telefono"
+                    placeholder="Tu teléfono"
+                >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="ciudad">
+                    📍 Ciudad
+                </label>
+
+                <input
+                    type="text"
+                    id="ciudad"
+                    placeholder="Tu ciudad"
+                >
+
+            </div>
+
+
+            <div class="campo">
+
+                <label for="mensaje">
+                    💬 Mensaje
+                </label>
+
+                <textarea
+                    id="mensaje"
+                    placeholder="Escribe tu mensaje..."
+                ></textarea>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =====================================
+             ONLY-CHILD
+        ====================================== -->
+
+        <div class="solo-hijo">
+
+            <p>
+                ⭐ Soy el único hijo de este contenedor.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================
+             ONLY-OF-TYPE
+        ====================================== -->
+
+        <div class="grupo-only-type">
+
+            <h2>
+                🔮 :only-of-type
+            </h2>
+
+            <label>
+                Campo único de tipo input:
+            </label>
+
+            <input
+                type="text"
+                placeholder="Este input es el único de su tipo"
+            >
+
+        </div>
+
+
+        <!-- =====================================
+             EMPTY
+        ====================================== -->
+
+        <h2>
+            📦 :empty
+        </h2>
+
+        <p>
+            La siguiente caja no contiene ningún elemento
+            dentro de ella.
+        </p>
+
+        <div class="caja-vacia"></div>
+
+
+        <!-- =====================================
+             CHECKBOX
+        ====================================== -->
+
+        <div class="opciones">
+
+            <h2>
+                ☑️ ¿Qué te gusta?
+            </h2>
+
+
+            <label class="opcion">
+
+                <input
+                    type="checkbox"
+                    name="gustos"
+                >
+
+                💻 Programación
+
+            </label>
+
+
+            <label class="opcion">
+
+                <input
+                    type="checkbox"
+                    name="gustos"
+                >
+
+                🎮 Videojuegos
+
+            </label>
+
+
+            <label class="opcion">
+
+                <input
+                    type="checkbox"
+                    name="gustos"
+                >
+
+                🎵 Música
+
+            </label>
+
+
+            <label class="opcion">
+
+                <input
+                    type="checkbox"
+                    name="gustos"
+                >
+
+                ⚽ Deportes
+
+            </label>
+
+        </div>
+
+
+        <!-- =====================================
+             RADIO
+        ====================================== -->
+
+        <div class="radios">
+
+            <h2>
+                🔘 Nivel de experiencia
+            </h2>
+
+
+            <label class="radio">
+
+                <input
+                    type="radio"
+                    name="nivel"
+                >
+
+                🟢 Principiante
+
+            </label>
+
+
+            <label class="radio">
+
+                <input
+                    type="radio"
+                    name="nivel"
+                >
+
+                🟡 Intermedio
+
+            </label>
+
+
+            <label class="radio">
+
+                <input
+                    type="radio"
+                    name="nivel"
+                >
+
+                🟠 Avanzado
+
+            </label>
+
+
+            <label class="radio">
+
+                <input
+                    type="radio"
+                    name="nivel"
+                >
+
+                🔴 Experto
+
+            </label>
+
+        </div>
+
+
+        <!-- =====================================
+             EJEMPLO ONLY-CHILD
+        ====================================== -->
+
+        <div class="mensaje-unico">
+
+            <p>
+                ✅ Este párrafo es el único hijo del contenedor,
+                por eso se activa :only-child.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================
+             BOTONES
+        ====================================== -->
+
+        <div class="botones">
+
+            <button type="submit">
+                ✅ Enviar
+            </button>
+
+            <button
+                type="reset"
+                class="limpiar"
+            >
+                🔄 Limpiar
+            </button>
+
+        </div>
+
+
+    </form>
+
+</div>
+
+
+<script>
+
+    function enviar(event) {
+
+        event.preventDefault();
+
+        alert(
+            "✅ Formulario enviado correctamente."
+        );
+
+    }
+
+</script>
+
+
+</body>
+
+</html>
