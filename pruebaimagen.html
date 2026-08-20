@@ -1,119 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tablero Triqui</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-        body {
-            background-color: #1a1a1a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+      body {
+        background-color: #1a1a1a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
 
-        /* Contenedor principal que simula la base de madera */
-        .board-container {
-            background: linear-gradient(135deg, #d4b08c 0%, #b8926a 100%);
-            border-radius: 35px;
-            padding: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5),
-                        inset 0 2px 5px rgba(255, 255, 255, 0.4),
-                        inset 0 -5px 15px rgba(0, 0, 0, 0.3);
-            border: 4px solid #9c7551;
-        }
+      /* Contenedor principal que simula la base de madera */
+      .board-container {
+        background: linear-gradient(135deg, #d4b08c 0%, #b8926a 100%);
+        border-radius: 35px;
+        padding: 25px;
+        box-shadow:
+          0 15px 35px rgba(0, 0, 0, 0.5),
+          inset 0 2px 5px rgba(255, 255, 255, 0.4),
+          inset 0 -5px 15px rgba(0, 0, 0, 0.3);
+        border: 4px solid #9c7551;
+      }
 
-        /* El tablero interno con las celdas */
-        .board {
-            display: grid;
-            grid-template-columns: repeat(3, 110px);
-            grid-template-rows: repeat(3, 110px);
-            gap: 12px;
-            background-color: #7c5837; /* Color de las líneas del tablero */
-            padding: 12px;
-            border-radius: 15px;
-            box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.6);
-        }
+      /* El tablero interno con las celdas */
+      .board {
+        display: grid;
+        grid-template-columns: repeat(3, 110px);
+        grid-template-rows: repeat(3, 110px);
+        gap: 12px;
+        background-color: #7c5837; /* Color de las líneas del tablero */
+        padding: 12px;
+        border-radius: 15px;
+        box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.6);
+      }
 
-        /* Cada casilla individual */
-        .cell {
-            background: linear-gradient(135deg, #e3c4a8 0%, #c4a180 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 8px;
-            box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2),
-                        0 2px 4px rgba(255, 255, 255, 0.2);
-            position: relative;
-        }
+      /* Cada casilla individual */
+      .cell {
+        background: linear-gradient(135deg, #e3c4a8 0%, #c4a180 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        box-shadow:
+          inset 0 3px 6px rgba(0, 0, 0, 0.2),
+          0 2px 4px rgba(255, 255, 255, 0.2);
+        position: relative;
+      }
 
-        /* Estilo para las fichas 'O' (Blancas) */
-        .o-piece {
-            width: 75px;
-            height: 75px;
-            border: 14px solid #ffffff;
-            border-radius: 50%;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25),
-                        inset 0 3px 5px rgba(0, 0, 0, 0.15);
-        }
+      /* Estilo para las fichas 'O' (Blancas) */
+      .o-piece {
+        width: 75px;
+        height: 75px;
+        border: 14px solid #ffffff;
+        border-radius: 50%;
+        box-shadow:
+          0 6px 12px rgba(0, 0, 0, 0.25),
+          inset 0 3px 5px rgba(0, 0, 0, 0.15);
+      }
 
-        /* Estilo para las fichas 'X' (Azules gruesas) */
-        .x-piece {
-            width: 80px;
-            height: 80px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.3));
-        }
+      /* Estilo para las fichas 'X' (Azules gruesas) */
+      .x-piece {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.3));
+      }
 
-        .x-piece::before,
-        .x-piece::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 95px;
-            background: linear-gradient(135deg, #3ea6ff 0%, #0077ed 100%);
-            border-radius: 10px;
-        }
+      .x-piece::before,
+      .x-piece::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 95px;
+        background: linear-gradient(135deg, #3ea6ff 0%, #0077ed 100%);
+        border-radius: 10px;
+      }
 
-        .x-piece::before {
-            transform: rotate(45deg);
-        }
+      .x-piece::before {
+        transform: rotate(45deg);
+      }
 
-        .x-piece::after {
-            transform: rotate(-45deg);
-        }
+      .x-piece::after {
+        transform: rotate(-45deg);
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="board-container">
-        <div class="board">
-            <!-- Fila 1 -->
-            <div class="cell"><div class="o-piece"></div></div>
-            <div class="cell"><div class="x-piece"></div></div>
-            <div class="cell"><div class="o-piece"></div></div>
+      <div class="board">
+        <!-- Fila 1 -->
+        <div class="cell"><div class="o-piece"></div></div>
+        <div class="cell"><div class="x-piece"></div></div>
+        <div class="cell"><div class="o-piece"></div></div>
 
-            <!-- Fila 2 -->
-            <div class="cell"><div class="o-piece"></div></div>
-            <div class="cell"><div class="x-piece"></div></div>
-            <div class="cell"><div class="x-piece"></div></div>
+        <!-- Fila 2 -->
+        <div class="cell"><div class="o-piece"></div></div>
+        <div class="cell"><div class="x-piece"></div></div>
+        <div class="cell"><div class="x-piece"></div></div>
 
-            <!-- Fila 3 -->
-            <div class="cell"><div class="o-piece"></div></div>
-            <div class="cell"><div class="x-piece"></div></div>
-            <div class="cell"><div class="x-piece"></div></div>
-        </div>
+        <!-- Fila 3 -->
+        <div class="cell"><div class="o-piece"></div></div>
+        <div class="cell"><div class="x-piece"></div></div>
+        <div class="cell"><div class="x-piece"></div></div>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>
